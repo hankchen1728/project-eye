@@ -12,6 +12,8 @@
 		71A26D7D1EC640FC002F76F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71A26D7B1EC640FC002F76F3 /* Main.storyboard */; };
 		71A26D7F1EC640FC002F76F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71A26D7E1EC640FC002F76F3 /* Assets.xcassets */; };
 		71A26D821EC640FC002F76F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71A26D801EC640FC002F76F3 /* LaunchScreen.storyboard */; };
+		71A26D8B1EC648EA002F76F3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71A26D8A1EC648EA002F76F3 /* AVFoundation.framework */; };
+		71A26D8D1EC649B2002F76F3 /* Speech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71A26D8C1EC649B2002F76F3 /* Speech.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,9 @@
 		71A26D7E1EC640FC002F76F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		71A26D811EC640FC002F76F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		71A26D831EC640FC002F76F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71A26D8A1EC648EA002F76F3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		71A26D8C1EC649B2002F76F3 /* Speech.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Speech.framework; path = System/Library/Frameworks/Speech.framework; sourceTree = SDKROOT; };
+		71D68B751ECAF9CF0060FDB7 /* NewsstandKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NewsstandKit.framework; path = System/Library/Frameworks/NewsstandKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +34,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71A26D8D1EC649B2002F76F3 /* Speech.framework in Frameworks */,
+				71A26D8B1EC648EA002F76F3 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +47,7 @@
 			children = (
 				71A26D761EC640FC002F76F3 /* project eye */,
 				71A26D751EC640FC002F76F3 /* Products */,
+				71A26D891EC648EA002F76F3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +70,16 @@
 				71A26D831EC640FC002F76F3 /* Info.plist */,
 			);
 			path = "project eye";
+			sourceTree = "<group>";
+		};
+		71A26D891EC648EA002F76F3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				71D68B751ECAF9CF0060FDB7 /* NewsstandKit.framework */,
+				71A26D8C1EC649B2002F76F3 /* Speech.framework */,
+				71A26D8A1EC648EA002F76F3 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,6 +114,7 @@
 				TargetAttributes = {
 					71A26D731EC640FC002F76F3 = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = XV2QHSQ5K4;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -260,6 +279,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = XV2QHSQ5K4;
 				INFOPLIST_FILE = "project eye/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "hankchen1728.project-eye";
@@ -272,6 +292,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = XV2QHSQ5K4;
 				INFOPLIST_FILE = "project eye/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "hankchen1728.project-eye";
@@ -299,6 +320,7 @@
 				71A26D881EC640FC002F76F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
