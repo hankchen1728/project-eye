@@ -52,6 +52,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, SFSpeechRec
             } else {
                 startRecording()
             }
+            
         }
         else{
             FirstTapDone = true
@@ -63,18 +64,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, SFSpeechRec
     }
     
     //語音輸入部分
-    func RecognizerTappedScreen() {
-        if audioEngine.isRunning {
-            audioEngine.stop()
-            recognitionRequest?.endAudio()
-            tapView.isUserInteractionEnabled = false
-            
-        } else {
-            startRecording()
-            print(UserString!)
-        }
-    }
-    
+   
      //使用者的字串
     //錄音程式
     func startRecording() {
@@ -112,6 +102,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, SFSpeechRec
             if result != nil {
                 self.UserString = result?.bestTranscription.formattedString
                 isFinal = (result?.isFinal)!
+                //if self.UserString != nil { print(self.UserString!) }
+                //else{
+                //    print("no voice at all!!!")
+                //}
             }
             
             if error != nil || isFinal {  //10
