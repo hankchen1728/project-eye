@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		717892661ED33A6D003710C2 /* Speech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71A26D8C1EC649B2002F76F3 /* Speech.framework */; };
 		71A26D781EC640FC002F76F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A26D771EC640FC002F76F3 /* AppDelegate.swift */; };
 		71A26D7A1EC640FC002F76F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A26D791EC640FC002F76F3 /* ViewController.swift */; };
 		71A26D7D1EC640FC002F76F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71A26D7B1EC640FC002F76F3 /* Main.storyboard */; };
 		71A26D7F1EC640FC002F76F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71A26D7E1EC640FC002F76F3 /* Assets.xcassets */; };
 		71A26D821EC640FC002F76F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71A26D801EC640FC002F76F3 /* LaunchScreen.storyboard */; };
 		71A26D8B1EC648EA002F76F3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71A26D8A1EC648EA002F76F3 /* AVFoundation.framework */; };
-		71A26D8D1EC649B2002F76F3 /* Speech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71A26D8C1EC649B2002F76F3 /* Speech.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71A26D8D1EC649B2002F76F3 /* Speech.framework in Frameworks */,
+				717892661ED33A6D003710C2 /* Speech.framework in Frameworks */,
 				71A26D8B1EC648EA002F76F3 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

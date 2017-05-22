@@ -10,11 +10,13 @@ import UIKit
 import AVFoundation
 import Speech
 
-class ViewController: UIViewController, UIGestureRecognizerDelegate, SFSpeechRecognizerDelegate {
+class ViewController: UIViewController, UIGestureRecognizerDelegate, SFSpeechRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     @IBOutlet var tapView: UIView!
-    
-    var UserString: String?
+    let imagePickerController:UIImagePickerController = UIImagePickerController() //用於開相機
+    var UserString: String? //使用者字串
+    var isUserStringChanged: Bool = false //用於判斷是否有新的語音辨識
+    var TTScase: Int = 0 //判斷現在的對話是哪個狀況
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "zh-TW"))!
     private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest? //這個物件負責發起語音識別請求
     private var recognitionTask: SFSpeechRecognitionTask? //這個物件用於保存發起語音識別請求后的返回值
@@ -32,40 +34,64 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, SFSpeechRec
         myUtterance.voice = AVSpeechSynthesisVoice(language: "zh-TW")
         synth.speak(myUtterance)
     }
-    
+    //app開啟時執行的函式，只執行一次
     func open(){
-        let ReadString: String = "歡迎使用project eye，請輕觸螢幕一下以繼續"
+        let ReadString: String = "歡迎使用project eye，本app使用語音辨識服務，當您開始說話前與結束說話時，請輕觸螢幕一下。"
         myTTS(mystring: ReadString)
     }
     //手勢
     var tapGesture = UITapGestureRecognizer()
     var FirstTapDone:Bool=false
     var count: Int = 0
-    func TapTheScreen(_ sender: UITapGestureRecognizer){
+    var CaseWhatToDo: Int = 0 //0代表沒有按過螢幕，1代表輕觸螢幕時要停止語音輸出，2代表要控制語音辨識
+    @IBAction func TapTheScreen(_ sender: UITapGestureRecognizer){
         print("tap the screen")
-        if FirstTapDone == true{
+        if synth.isSpeaking && CaseWhatToDo != 0{
+            CaseWhatToDo = 1
+            synth.stopSpeaking(at: AVSpeechBoundary.word)
+            //按一下，馬上停止語音輸出
+        }
+        switch CaseWhatToDo {
+        case 0:
+            synth.stopSpeaking(at: AVSpeechBoundary.word)
+            let ReadString:String = "請問您要直接開啟相機進行辨識嗎？"
+            TTScase = 1
+            myTTS(mystring: ReadString)
+        case 1:
+            synth.stopSpeaking(at: AVSpeechBoundary.word)
+        case 2:
             if audioEngine.isRunning {
+                //錄音停止
                 audioEngine.stop()
                 recognitionRequest?.endAudio()
                 tapView.isUserInteractionEnabled = false
                 
             } else {
+                isUserStringChanged = false
+                //開始錄音並進行語音辨識
                 startRecording()
             }
-            
+        default:
+            break
         }
-        else{
-            FirstTapDone = true
-            var ReadString:String = "本app使用語音辨識服務，當您開始說話前與結束說話時，請輕觸螢幕一下。"
-            myTTS(mystring: ReadString)
-            ReadString = "請問您要直接開啟相機進行辨識嗎？"
-            myTTS(mystring: ReadString)
+        CaseWhatToDo = 2
+    }
+    
+    @IBAction func mainfunction(_ sender:AnyObject){
+        if isUserStringChanged == true{
+            switch TTScase {
+            case 1:
+                if UserString!.contains("好") || UserString!.contains("相機"){
+                    
+                }
+            default:
+                break
+            }
         }
     }
     
+    
     //語音輸入部分
-   
-     //使用者的字串
     //錄音程式
     func startRecording() {
         
@@ -101,11 +127,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, SFSpeechRec
             
             if result != nil {
                 self.UserString = result?.bestTranscription.formattedString
+                self.isUserStringChanged = true
                 isFinal = (result?.isFinal)!
-                //if self.UserString != nil { print(self.UserString!) }
-                //else{
-                //    print("no voice at all!!!")
-                //}
             }
             
             if error != nil || isFinal {  //10
@@ -152,8 +175,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, SFSpeechRec
         tapView.addGestureRecognizer(tapGesture)
         tapView.isUserInteractionEnabled = true
         
-        
-        
+        //語音辨識設定
         speechRecognizer.delegate = self  //3
         
         SFSpeechRecognizer.requestAuthorization { (authStatus) in  //4
@@ -181,6 +203,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, SFSpeechRec
                 self.tapView.isUserInteractionEnabled = isTapEnabled
             }
         }
+        //照相設定
+        imagePickerController.delegate = self
         open()
     }
 
@@ -188,7 +212,4 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, SFSpeechRec
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
-
