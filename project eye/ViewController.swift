@@ -13,7 +13,7 @@ import Speech
 class ViewController: UIViewController, UIGestureRecognizerDelegate, SFSpeechRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     @IBOutlet var tapView: UIView!
-    let imagePicker:UIImagePickerController = UIImagePickerController() //用於開相機
+    let imagePicker:UIImagePickerController = UIImagePickerController()//用於開相機
     var UserString: String? //使用者字串
     var isUserStringChanged: Bool = false //用於判斷是否有新的語音辨識
     var TTScase: Int = 0 //判斷現在的對話是哪個狀況
@@ -41,8 +41,12 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, SFSpeechRec
     }
     //開啟相機的函式
     func openCamera(){
-        if UIImagePickerController.isCameraDeviceAvailable(UIImagePickerControllerCameraDevice.rear){
-            self.present(imagePicker, animated: true) { () -> Void in}
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera){
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .camera
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
         }else{
             myTTS(mystring: "很抱歉您的裝置未配備後置鏡頭或相機無法開啟。")
         }
@@ -213,10 +217,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, SFSpeechRec
                 self.tapView.isUserInteractionEnabled = isTapEnabled
             }
         }
-        //照相設定
-        imagePicker.delegate = self
-        //imagePicker.sourceType = .camera
-        //imagePicker.mediaTypes = ["public.image","public.movie"]
         
         open()
     }
