@@ -68,6 +68,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, SFSpeechRec
         case 1:
             synth.stopSpeaking(at: AVSpeechBoundary.word)
         case 2:
+            print("start to do speech recognizer")
             if audioEngine.isRunning {
                 //錄音停止
                 audioEngine.stop()
@@ -82,6 +83,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, SFSpeechRec
         default:
             break
         }
+        
         CaseWhatToDo = 2
     }
     
@@ -213,8 +215,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, SFSpeechRec
         }
         //照相設定
         imagePicker.delegate = self
-        imagePicker.sourceType = .camera
-        imagePicker.mediaTypes = ["public.image","public.movie"]
+        //imagePicker.sourceType = .camera
+        //imagePicker.mediaTypes = ["public.image","public.movie"]
         
         open()
     }

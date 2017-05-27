@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		717892661ED33A6D003710C2 /* Speech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71A26D8C1EC649B2002F76F3 /* Speech.framework */; };
-		71A26D781EC640FC002F76F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A26D771EC640FC002F76F3 /* AppDelegate.swift */; };
+		719BA3CB1ED9EB8800883CD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A26D771EC640FC002F76F3 /* AppDelegate.swift */; };
 		71A26D7A1EC640FC002F76F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A26D791EC640FC002F76F3 /* ViewController.swift */; };
 		71A26D7D1EC640FC002F76F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71A26D7B1EC640FC002F76F3 /* Main.storyboard */; };
 		71A26D7F1EC640FC002F76F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71A26D7E1EC640FC002F76F3 /* Assets.xcassets */; };
@@ -26,7 +26,6 @@
 		71A26D831EC640FC002F76F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71A26D8A1EC648EA002F76F3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		71A26D8C1EC649B2002F76F3 /* Speech.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Speech.framework; path = System/Library/Frameworks/Speech.framework; sourceTree = SDKROOT; };
-		71D68B751ECAF9CF0060FDB7 /* NewsstandKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NewsstandKit.framework; path = System/Library/Frameworks/NewsstandKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +74,6 @@
 		71A26D891EC648EA002F76F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				71D68B751ECAF9CF0060FDB7 /* NewsstandKit.framework */,
 				71A26D8C1EC649B2002F76F3 /* Speech.framework */,
 				71A26D8A1EC648EA002F76F3 /* AVFoundation.framework */,
 			);
@@ -155,8 +153,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				719BA3CB1ED9EB8800883CD6 /* AppDelegate.swift in Sources */,
 				71A26D7A1EC640FC002F76F3 /* ViewController.swift in Sources */,
-				71A26D781EC640FC002F76F3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
