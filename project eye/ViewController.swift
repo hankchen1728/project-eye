@@ -66,13 +66,12 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, SFSpeechRec
         switch CaseWhatToDo {
         case 0:
             synth.stopSpeaking(at: AVSpeechBoundary.word)
-            let ReadString:String = "請問您要直接開啟相機進行辨識嗎？"
+            let ReadString:String = "請問您要直接開啟相機進行辨識嗎"
             TTScase = 1
             myTTS(mystring: ReadString)
         case 1:
             synth.stopSpeaking(at: AVSpeechBoundary.word)
         case 2:
-            print("start to do speech recognizer")
             if audioEngine.isRunning {
                 //錄音停止
                 audioEngine.stop()
@@ -91,23 +90,29 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, SFSpeechRec
         CaseWhatToDo = 2
     }
     
-    @IBAction func mainfunction(_ sender:AnyObject){
-        if isUserStringChanged == true{
+    func mainfunction(){
+        print("mainfunction is enable")
+        if isUserStringChanged{
+            print(UserString!)
             switch TTScase {
             case 1:
-                if UserString!.contains("好") || UserString!.contains("相機"){
+                if UserString!.contains("好") || UserString!.contains("開啟"){
+                    print("user want to open camera")
                     openCamera()
                 }
             default:
                 break
             }
         }
+        else{
+            print("no action")
+        }
     }
-    
     
     //語音輸入部分
     //錄音程式
     func startRecording() {
+        print("錄音開始執行")
         
         if recognitionTask != nil {  //1
             recognitionTask?.cancel()
@@ -143,6 +148,11 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, SFSpeechRec
                 self.UserString = result?.bestTranscription.formattedString
                 self.isUserStringChanged = true
                 isFinal = (result?.isFinal)!
+                //
+                if self.UserString != nil { print(self.UserString!) }
+                else{
+                    print("no voice at all!!!")
+                }
             }
             
             if error != nil || isFinal {  //10
@@ -153,6 +163,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, SFSpeechRec
                 self.recognitionTask = nil
                 
                 self.tapView.isUserInteractionEnabled = true
+            }
+            
+            if (result?.isFinal)!{
+                self.mainfunction()
             }
         })
         
